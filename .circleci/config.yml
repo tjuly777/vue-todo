@@ -25,7 +25,13 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
+
   deploy:
+    docker:
+      - image: circleci/node:12.11.0
+
+    working_directory: ~/repo
+
     steps:
       - run:
           name: Install Firebase CLI
