@@ -36,14 +36,14 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
       - run:
-        name: Deploy to Firebase Hosting
-        command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN
+          name: Deploy to Firebase Hosting
+          command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN
 
 workflows:
-    version: 2
-    deploy_dev:
-      jobs:
-        - deploy_dev:
-            filters:
-              branches:
-                only: develop
+  version: 2
+  deploy_dev:
+    jobs:
+      - deploy_dev:
+          filters:
+            branches:
+              only: develop
