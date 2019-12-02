@@ -40,8 +40,8 @@ workflows:
     jobs:
       - build
       - deploy:
+          requires:
+            - build
           filters:
-            requires:
-              - build
             branches:
               only: master
