@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  build_check:
+  build:
     docker:
       - image: circleci/node:12.11.0
 
@@ -26,7 +26,7 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
-deploy_master:
+deploy:
   steps:
     - run:
         name: Install Firebase CLI
@@ -39,8 +39,10 @@ workflows:
   version: 2
   build_and_deploy:
     jobs:
-      - build_check:
-      - deploy_master:
+      - build
+      - deploy:
           filters:
+            requires:
+              - build
             branches:
               only: master
